@@ -7,6 +7,7 @@ const resources = {
     translation: {
       nav: {
         home: 'Explore',
+        docs: 'Docs',
         publish: 'Publish',
         profile: 'Profile',
         login: 'Sign In',
@@ -19,6 +20,7 @@ const resources = {
         subtitle: 'Browse, download and share community-built flows for Cursor, OpenCode, and Claude Code.',
         search: 'Search flows...',
         sort: { popular: 'Popular', trending: 'Trending' },
+        whatIs: 'What is AgentFlow?',
         noResults: 'No flows found.',
         loadMore: 'Load More',
         downloads: 'downloads',
@@ -93,6 +95,7 @@ const resources = {
     translation: {
       nav: {
         home: '发现',
+        docs: '文档',
         publish: '发布',
         profile: '我的',
         login: '登录',
@@ -105,6 +108,7 @@ const resources = {
         subtitle: '浏览、下载和分享社区构建的工作流，适用于 Cursor、OpenCode 和 Claude Code。',
         search: '搜索工作流...',
         sort: { popular: '最热门', trending: '近期趋势' },
+        whatIs: '什么是 AgentFlow？',
         noResults: '未找到工作流。',
         loadMore: '加载更多',
         downloads: '下载量',

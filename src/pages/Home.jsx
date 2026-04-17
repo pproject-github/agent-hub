@@ -74,9 +74,31 @@ export default function Home() {
         <h1 className="font-headline font-bold text-4xl md:text-6xl mb-4">
           {t('home.title')} <span className="text-gradient">{t('home.titleGradient')}</span>
         </h1>
-        <p className="text-on-surface-variant text-lg max-w-2xl mx-auto">
+        <p className="text-on-surface-variant text-lg max-w-2xl mx-auto mb-6">
           {t('home.subtitle')}
         </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href="https://pproject-github.github.io/agentflow/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost btn-sm flex items-center gap-2"
+          >
+            <span className="material-symbols-outlined text-sm">info</span>
+            {t('home.whatIs')}
+          </a>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20 font-mono text-sm text-on-surface">
+            <span className="text-primary">$</span>
+            npm install -g agentflow
+            <button
+              onClick={() => { navigator.clipboard.writeText('npm install -g agentflow'); }}
+              className="ml-2 text-on-surface-variant hover:text-primary transition-colors"
+              title="Copy"
+            >
+              <span className="material-symbols-outlined text-sm">content_copy</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 mb-8">

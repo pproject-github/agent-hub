@@ -10,6 +10,7 @@ export default function Navbar() {
 
   const navItems = [
     { path: '/', label: t('nav.home') },
+    { path: 'https://pproject-github.github.io/agentflow/', label: t('nav.docs'), external: true },
     ...(user ? [
       { path: '/publish', label: t('nav.publish') },
       { path: '/me', label: t('nav.profile') },
@@ -31,15 +32,27 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden md:flex gap-8 md:gap-12">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`nav-link ${location.pathname === item.path ? 'text-primary' : ''}`}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) =>
+            item.external ? (
+              <a
+                key={item.path}
+                href={item.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`nav-link ${location.pathname === item.path ? 'text-primary' : ''}`}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
         </div>
 
         <div className="flex items-center gap-3 md:gap-4">
