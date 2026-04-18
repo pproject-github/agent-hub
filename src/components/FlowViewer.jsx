@@ -43,9 +43,9 @@ function deserializeFlowYaml(flowYamlContent) {
         target: String(e.target),
         sourceHandle: e.sourceHandle || 'output-0',
         targetHandle: e.targetHandle || 'input-0',
-        markerEnd: { type: MarkerType.ArrowClosed, color: '#d0bcff' },
-        style: { stroke: '#d0bcff', strokeWidth: 2 },
-        type: 'default',
+        markerEnd: { type: MarkerType.ArrowClosed, color: 'rgba(208,188,255,0.35)' },
+        style: { stroke: 'rgba(208,188,255,0.25)', strokeWidth: 1 },
+        type: 'smoothstep',
       }));
 
     return { nodes, edges };
