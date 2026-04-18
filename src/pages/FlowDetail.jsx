@@ -18,6 +18,7 @@ export default function FlowDetail() {
   const [loading, setLoading] = useState(true);
   const [yamlContent, setYamlContent] = useState(null);
   const [downloading, setDownloading] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [editingReadme, setEditingReadme] = useState(false);
   const [readmeText, setReadmeText] = useState('');
@@ -87,6 +88,14 @@ export default function FlowDetail() {
       setFlow((prev) => ({ ...prev, downloads: prev.downloads + 1 }));
     }
     setDownloading(false);
+  }
+
+  async function handleCopyInstall() {
+    try {
+      await navigator.clipboard.writeText(`agentflow download ${flow.slug}`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {}
   }
 
   async function handleComment(e) {
@@ -181,22 +190,37 @@ export default function FlowDetail() {
             </div>
           </div>
 
-          <div className="flex gap-3">
-            {user ? (
+          <div className="flex flex-col items-stretch md:items-end gap-2">
+            <div className="flex gap-3">
+              {user ? (
+                <button
+                  onClick={handleDownload}
+                  disabled={downloading}
+                  className="btn-primary btn-sm flex items-center gap-2"
+                >
+                  <span className="material-symbols-outlined text-sm">download</span>
+                  {downloading ? '...' : t('detail.download')}
+                </button>
+              ) : (
+                <Link to="/login" className="btn-ghost btn-sm flex items-center gap-2">
+                  <span className="material-symbols-outlined text-sm">lock</span>
+                  {t('detail.loginToDownload')}
+                </Link>
+              )}
               <button
-                onClick={handleDownload}
-                disabled={downloading}
-                className="btn-primary btn-sm flex items-center gap-2"
+                onClick={handleCopyInstall}
+                title={t('detail.installCmdHint')}
+                className="btn-ghost btn-sm flex items-center gap-2"
               >
-                <span className="material-symbols-outlined text-sm">download</span>
-                {downloading ? '...' : t('detail.download')}
+                <span className="material-symbols-outlined text-sm">
+                  {copied ? 'check' : 'content_copy'}
+                </span>
+                {copied ? t('detail.copied') : t('detail.installCmd')}
               </button>
-            ) : (
-              <Link to="/login" className="btn-ghost btn-sm flex items-center gap-2">
-                <span className="material-symbols-outlined text-sm">lock</span>
-                {t('detail.loginToDownload')}
-              </Link>
-            )}
+            </div>
+            <code className="text-xs text-on-surface-variant/80 font-mono px-2 py-1 rounded bg-surface-container/60 select-all">
+              agentflow download {flow.slug}
+            </code>
           </div>
         </div>
 
