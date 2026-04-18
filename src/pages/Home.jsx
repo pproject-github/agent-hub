@@ -79,7 +79,7 @@ export default function Home() {
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
-            href="https://pproject-github.github.io/agentflow/"
+            href="https://docs.agentflow-hub.com"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-ghost btn-sm flex items-center gap-2"

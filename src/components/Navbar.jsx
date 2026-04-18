@@ -10,7 +10,7 @@ export default function Navbar() {
 
   const navItems = [
     { path: '/', label: t('nav.home') },
-    { path: 'https://pproject-github.github.io/agentflow/', label: t('nav.docs'), external: true },
+    { path: 'https://docs.agentflow-hub.com', label: t('nav.docs'), external: true },
     ...(user ? [
       { path: '/publish', label: t('nav.publish') },
       { path: '/me', label: t('nav.profile') },
