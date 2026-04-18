@@ -74,6 +74,8 @@ const resources = {
         tokenHint: 'Use this token with `agentflow publish` CLI.',
         revoke: 'Revoke',
         noTokens: 'No API tokens.',
+        confirmDelete: 'Delete "{{title}}"? This removes the flow, its file, and all comments. This cannot be undone.',
+        deleteFailed: 'Delete failed',
       },
       login: {
         title: 'Sign In',
@@ -165,6 +167,8 @@ const resources = {
         tokenHint: '配合 `agentflow publish` CLI 使用。',
         revoke: '撤销',
         noTokens: '没有 API 令牌。',
+        confirmDelete: '确定删除 "{{title}}" 吗？将同时删除该工作流、文件和所有评论，不可恢复。',
+        deleteFailed: '删除失败',
       },
       login: {
         title: '登录',

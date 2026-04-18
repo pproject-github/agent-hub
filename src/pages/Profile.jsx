@@ -28,6 +28,21 @@ export default function Profile() {
     setLoading(false);
   }
 
+  async function handleDelete(flow) {
+    if (!window.confirm(t('profile.confirmDelete', { title: flow.title }))) return;
+
+    if (flow.yaml_key) {
+      await supabase.storage.from('flows').remove([flow.yaml_key]);
+    }
+    await supabase.from('comments').delete().eq('flow_id', flow.id);
+    const { error } = await supabase.from('flows').delete().eq('id', flow.id);
+    if (error) {
+      window.alert(t('profile.deleteFailed') + ': ' + error.message);
+      return;
+    }
+    setFlows((prev) => prev.filter((f) => f.id !== flow.id));
+  }
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -60,7 +75,7 @@ export default function Profile() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {flows.map((flow) => (
-              <FlowCard key={flow.id} flow={flow} />
+              <FlowCard key={flow.id} flow={flow} onDelete={handleDelete} />
             ))}
           </div>
         )}

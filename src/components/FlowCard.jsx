@@ -1,11 +1,25 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-export default function FlowCard({ flow }) {
+export default function FlowCard({ flow, onDelete }) {
   const { t } = useTranslation();
 
   return (
-    <Link to={`/flows/${flow.slug}`} className="card-solid group cursor-pointer block">
+    <Link to={`/flows/${flow.slug}`} className="card-solid group cursor-pointer block relative">
+      {onDelete && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onDelete(flow);
+          }}
+          title={t('common.delete')}
+          className="absolute top-3 right-3 p-1.5 rounded-full bg-surface-container-lowest/80 text-on-surface-variant hover:text-error hover:bg-error-container/30 transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100 z-10"
+        >
+          <span className="material-symbols-outlined text-base">delete</span>
+        </button>
+      )}
       {flow.thumbnail_key && (
         <div className="mb-4 rounded-2xl overflow-hidden bg-surface-container-lowest h-40 flex items-center justify-center">
           <img src={flow.thumbnail_key} alt="" className="w-full h-full object-cover" />
